@@ -16,6 +16,17 @@ group by roles.name
 order by maximumSalary asc;
 
 
+Bônus
+
+SELECT schools.name AS school, courses.name AS course, COUNT(educations.status) AS studentsCount,
+educations.status
+from educations join schools ON educations."schoolId" = schools.id
+JOIN courses ON educations."courseId" = courses.id
+WHERE educations.status = 'ongoing' or educations.status = 'finished'
+GROUP BY school, course, educations.status
+ORDER BY studentsCount DESC
+LIMIT 3;
+
 
 
 
